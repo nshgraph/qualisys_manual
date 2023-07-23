@@ -1,10 +1,18 @@
 import re
+import os
+import shutil
 from llama_index import GPTVectorStoreIndex, Document
 
 documents = []
 index = 0
 def get_manual_documents():
     global index
+
+    # ensure there is an empty manual directory
+    if os.path.exists("manual"):
+        shutil.rmtree("manual")
+    os.mkdir("manual")
+
     with open("manual.md", "r") as f:
         lines = f.readlines()
 
